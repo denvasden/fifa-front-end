@@ -2,7 +2,13 @@ const fs = require("fs");
 
 
 
-function parserText(textData, dataFIFA, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
+function parserText(textData, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
+
+   const dataFIFA = {
+      countries: [],
+      leagues: [],
+      teams: [],
+   };
 
    let indexStartIncludes = textData.indexOf(substrStart);
    let indexEnd = textData.lastIndexOf(substrEnd);
@@ -16,6 +22,7 @@ function parserText(textData, dataFIFA, substrStart = "ARGENTINA", substrEnd = "
    arrayCountriesAndTeams = coreText.split("<h2>");
 
    arrayCountriesAndTeams.forEach(textBlock => parseBlock(textBlock, dataFIFA));
+   return dataFIFA
 }
 
 function parseBlock(textBlock, objectArrays) {
@@ -75,12 +82,90 @@ function writeToJSONFile(path, fileName, data) {
       if (!error || error.code === "EEXIST") {
 
          fs.writeFile(`${path}/${fileName}`, JSON.stringify(data),
-            error => error ? alert(`Ошибка при создании файла: ${fileName}`) : null);
+            error => error ? console.log(`Ошибка при создании файла: ${fileName}`) : null);
       }
-      else alert("Ошибка при создании каталога: /data")
+      else console.log(("Ошибка при создании каталога: /data"));
    });
 }
 
+function parserFIFA(textData, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
+
+   const indexIncludesSubstrStart = textData.indexOf(substrStart);
+   const indexIncludesSubstrEnd = textData.lastIndexOf(substrEnd);
+
+   let coreText;
+   // let arrayCountriesAndTeams;
+
+   const indexStartBlockText = textData.lastIndexOf("<h2>", indexIncludesSubstrStart);
+   // +4 добавляет подстроку "</p>" в coreText для закрытия тега
+
+   const indexEndBlockText = textData.indexOf("</p>", indexIncludesSubstrEnd) + 4;
+
+   coreText = textData.slice(indexStartBlockText, indexEndBlockText);
+   // arrayCountriesAndTeams = coreText.split("<h2>");
+
+   // arrayCountriesAndTeams.forEach(textBlock => parseBlock(textBlock, dataFIFA));
+   return parserCore(coreText);
+}
+
+
+function parserCore(coreText) {
+
+   const dataFIFA = {
+      countries: [],
+      leagues: [],
+      teams: [],
+   };
+
+   function parse(indexStart = 0) {
+
+      let tempString;
+      // indexStart +1 обязательно, иначе входит в бесконечный цикл, т.к. постоянно находит подстроку на одном месте
+      let indexEnd = coreText.indexOf("\r\n", indexStart + 1);
+
+      const lastContries = dataFIFA.countries[dataFIFA.countries.length - 1];
+      const lastLegaues = dataFIFA.leagues[dataFIFA.leagues.length - 1];
+
+      if (indexEnd < 0) return
+
+      let oneLine = coreText.slice(indexStart, indexEnd);
+
+      tempString = filterString(getCleanString(oneLine));
+
+      if (tempString) {
+
+         if (oneLine.includes("<h2>")) dataFIFA.countries.push(tempString);
+         else
+            if (oneLine.includes("<b>")) {
+               dataFIFA.leagues.push({ "country": lastContries, "league": tempString });
+            }
+            else dataFIFA.teams.push({ ...lastLegaues, "team": tempString });
+      }
+
+      parse(indexEnd);
+   }
+
+   parse()
+
+   return dataFIFA;
+}
+
+
+function getCleanString(line) {
+
+   const cleanString = line.replace(/\r\n/, '').replace(/<\/?[a-z][a-z0-9]*>/gi, '');
+
+   return cleanString;
+}
+
+function benchmark(func, ...funcArgs) {
+   const now = Date.now();
+
+   func(...funcArgs);
+
+   return Date.now() - now;
+}
+
 module.exports = {
-   writeDataToJSONFiles, parserText,
+   writeDataToJSONFiles, parserText, parserFIFA, benchmark
 }
