@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const axios = require("axios").default;
 const { parserText, writeDataToJSONFiles, parserFIFA, benchmark } = require("./utilities");
 
@@ -21,3 +22,5 @@ getAndWriteDataFifa(URLFIFA);
 
 
 
+=======
+>>>>>>> 5228d93 (Revert "Verify lint-staged")
