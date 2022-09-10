@@ -7,7 +7,8 @@ const dataFIFA = {
    teams: [],
 };
 
-const URLFIFA = "https://www.ea.com/ru-ru/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list";
+const URLFIFARu = "https://www.ea.com/ru-ru/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list";
+const URLFIFA = "https://www.ea.com/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list?setLocale=en-us"
 
 async function getAndWriteDataFifa(URL) {
 

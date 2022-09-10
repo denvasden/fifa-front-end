@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-function parserText(textData, dataFIFA, substrStart = "АРГЕНТИНА", substrEnd = "Ulsan Hyundai") {
+function parserText(textData, dataFIFA, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
 
    let indexStartIncludes = textData.indexOf(substrStart);
    let indexEnd = textData.lastIndexOf(substrEnd);
@@ -30,8 +30,11 @@ function parseBlock(textBlock, objectArrays) {
    leaguesAndTeams = textBlock.split("<p>");
    leaguesAndTeams.splice(0, 1);
 
-   leaguesAndTeams.forEach(leagueAndTeam => {
+   leaguesAndTeams.forEach((leagueAndTeam, index) => {
 
+      if (index === 0 && !leagueAndTeam.startsWith("<b>")) {
+         objectArrays.leagues.push({ "country": objectArrays.countries[objectArrays.countries.length - 1], "league": objectArrays.countries[objectArrays.countries.length - 1] });
+      }
       if (leagueAndTeam.startsWith("<b>")) {
 
          endIndexTemp = leagueAndTeam.indexOf("</b>")
