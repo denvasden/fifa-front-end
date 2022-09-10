@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+
+
 function parserText(textData, dataFIFA, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
 
    let indexStartIncludes = textData.indexOf(substrStart);

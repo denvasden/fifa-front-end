@@ -12,7 +12,7 @@ const URLFIFA = "https://www.ea.com/games/fifa/fifa-22/news/fifa-22-all-leagues-
 
 async function getAndWriteDataFifa(URL) {
 
-   const response = await axios(URL);
+   const response = await axios(URL);   
 
    parserText(response.data, dataFIFA);
    writeDataToJSONFiles("../data", dataFIFA);
