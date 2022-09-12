@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const axios = require("axios").default;
 const { parserText, writeDataToJSONFiles, parserFIFA, benchmark } = require("./utilities");
 
@@ -8,13 +7,9 @@ async function getAndWriteDataFifa(URL) {
 
    const response = await axios(URL);
 
-   // parserText(response.data);
-   // writeDataToJSONFiles("../data", dataFIFA);
-   console.log(benchmark(parserText, response.data));
-   console.log(benchmark(parserFIFA, response.data));
-   
-    
-   
+   const dataFIFA = parserText(response.data);
+   writeDataToJSONFiles("../data", dataFIFA);
+
 }
 
 getAndWriteDataFifa(URLFIFA);
@@ -22,5 +17,3 @@ getAndWriteDataFifa(URLFIFA);
 
 
 
-=======
->>>>>>> 5228d93 (Revert "Verify lint-staged")
