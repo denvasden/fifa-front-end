@@ -22,6 +22,7 @@ function parserText(textData, substrStart = "ARGENTINA", substrEnd = "Wilsterman
    arrayCountriesAndTeams = coreText.split("<h2>");
 
    arrayCountriesAndTeams.forEach(textBlock => parseBlock(textBlock, dataFIFA));
+   
    return dataFIFA;
 }
 

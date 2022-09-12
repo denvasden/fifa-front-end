@@ -9,7 +9,6 @@ async function getAndWriteDataFifa(URL) {
 
    const dataFIFA = parserText(response.data);
    writeDataToJSONFiles("../data", dataFIFA);
-
 }
 
 getAndWriteDataFifa(URLFIFA);
