@@ -22,7 +22,7 @@ function parserText(textData, substrStart = "ARGENTINA", substrEnd = "Wilsterman
    arrayCountriesAndTeams = coreText.split("<h2>");
 
    arrayCountriesAndTeams.forEach(textBlock => parseBlock(textBlock, dataFIFA));
-   
+
    return dataFIFA;
 }
 
@@ -89,26 +89,23 @@ function writeToJSONFile(path, fileName, data) {
    });
 }
 
+
+
+
 function parserFIFA(textData, substrStart = "ARGENTINA", substrEnd = "Wilstermann") {
 
    const indexIncludesSubstrStart = textData.indexOf(substrStart);
    const indexIncludesSubstrEnd = textData.lastIndexOf(substrEnd);
 
    let coreText;
-   // let arrayCountriesAndTeams;
 
    const indexStartBlockText = textData.lastIndexOf("<h2>", indexIncludesSubstrStart);
-   // +4 добавляет подстроку "</p>" в coreText для закрытия тега
-
-   const indexEndBlockText = textData.indexOf("</p>", indexIncludesSubstrEnd) + 4;
+   const indexEndBlockText = textData.indexOf("</p>", indexIncludesSubstrEnd);
 
    coreText = textData.slice(indexStartBlockText, indexEndBlockText);
-   // arrayCountriesAndTeams = coreText.split("<h2>");
 
-   // arrayCountriesAndTeams.forEach(textBlock => parseBlock(textBlock, dataFIFA));
    return parserCore(coreText);
 }
-
 
 function parserCore(coreText) {
 
@@ -118,39 +115,53 @@ function parserCore(coreText) {
       teams: [],
    };
 
-   function parse(indexStart = 0) {
+   let indexStart, indexEnd = 0;
 
-      let tempString;
-      // indexStart +1 обязательно, иначе входит в бесконечный цикл, т.к. постоянно находит подстроку на одном месте
-      let indexEnd = coreText.indexOf("\r\n", indexStart + 1);
+   while (indexEnd !== coreText.length - 1) {
+
+      // indexStart +1 necessarily, otherwise it enters an infinite loop, because always finds a substring in the same place
+      indexEnd = coreText.indexOf("\r\n", indexStart + 1) < 0 ? coreText.length - 1 : coreText.indexOf("\r\n", indexStart + 1);
 
       const lastContries = dataFIFA.countries[dataFIFA.countries.length - 1];
       const lastLegaues = dataFIFA.leagues[dataFIFA.leagues.length - 1];
 
-      if (indexEnd < 0) return
-
       let oneLine = coreText.slice(indexStart, indexEnd);
 
-      tempString = filterString(getCleanString(oneLine));
+      const country = parseCountry(oneLine);
+      const league = parseLeague(oneLine);
+      const team = parseTeam(oneLine);
 
-      if (tempString) {
+      country && dataFIFA.countries.push(country);
+      league && dataFIFA.leagues.push({ "country": lastContries, "league": league });
+      team && dataFIFA.teams.push({ ...lastLegaues, "team": team });
 
-         if (oneLine.includes("<h2>")) dataFIFA.countries.push(tempString);
-         else
-            if (oneLine.includes("<b>")) {
-               dataFIFA.leagues.push({ "country": lastContries, "league": tempString });
-            }
-            else dataFIFA.teams.push({ ...lastLegaues, "team": tempString });
-      }
+      if (dataFIFA.leagues[dataFIFA.leagues.length - 1] && dataFIFA.leagues[dataFIFA.leagues.length - 1].country !== lastContries)
+         dataFIFA.leagues.push({ "country": lastContries, "league": lastContries })
 
-      parse(indexEnd);
+      indexStart = indexEnd;
    }
-
-   parse()
 
    return dataFIFA;
 }
 
+
+function parseCountry(textLine) {
+
+   if (textLine.includes("<h2>"))
+      return filterString(getCleanString(textLine))
+}
+
+function parseLeague(textLine) {
+
+   if (textLine.includes("<b>"))
+      return filterString(getCleanString(textLine))
+}
+
+function parseTeam(textLine) {
+
+   if (textLine.includes("<p>") && !textLine.includes("<b>"))
+      return filterString(getCleanString(textLine))
+}
 
 function getCleanString(line) {
 

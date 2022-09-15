@@ -7,7 +7,7 @@ async function getAndWriteDataFifa(URL) {
 
    const response = await axios(URL);
 
-   const dataFIFA = parserText(response.data);
+   const dataFIFA = parserFIFA(response.data);
    writeDataToJSONFiles("../data", dataFIFA);
 }
 

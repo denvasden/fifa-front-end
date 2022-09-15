@@ -73,6 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Let's take [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) as a starting point for the git branching policy
 
+
 ### Branch naming convention
 
 Feature: `[username]/feature/[GitHub-issue-title]`
