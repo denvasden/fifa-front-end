@@ -136,6 +136,7 @@ function parserCore(coreText) {
 
       if (dataFIFA.leagues[dataFIFA.leagues.length - 1] && dataFIFA.leagues[dataFIFA.leagues.length - 1].country !== lastContries)
          dataFIFA.leagues.push({ "country": lastContries, "league": lastContries })
+         
       // indexEnd +1 necessarily, otherwise it enters an infinite loop, because always finds a substring in the same place
       indexStart = indexEnd + 1;
    }
