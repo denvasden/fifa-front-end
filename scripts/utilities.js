@@ -119,8 +119,8 @@ function parserCore(coreText) {
 
    while (indexEnd !== coreText.length - 1) {
 
-      // indexStart +1 necessarily, otherwise it enters an infinite loop, because always finds a substring in the same place
-      indexEnd = coreText.indexOf("\r\n", indexStart + 1) < 0 ? coreText.length - 1 : coreText.indexOf("\r\n", indexStart + 1);
+
+      indexEnd = coreText.indexOf("\r\n", indexStart) < 0 ? coreText.length - 1 : coreText.indexOf("\r\n", indexStart);
 
       const lastContries = dataFIFA.countries[dataFIFA.countries.length - 1];
       const lastLegaues = dataFIFA.leagues[dataFIFA.leagues.length - 1];
@@ -137,8 +137,8 @@ function parserCore(coreText) {
 
       if (dataFIFA.leagues[dataFIFA.leagues.length - 1] && dataFIFA.leagues[dataFIFA.leagues.length - 1].country !== lastContries)
          dataFIFA.leagues.push({ "country": lastContries, "league": lastContries })
-
-      indexStart = indexEnd;
+      // indexEnd +1 necessarily, otherwise it enters an infinite loop, because always finds a substring in the same place
+      indexStart = indexEnd + 1;
    }
 
    return dataFIFA;
@@ -165,7 +165,7 @@ function parseTeam(textLine) {
 
 function getCleanString(line) {
 
-   const cleanString = line.replace(/\r\n/, '').replace(/<\/?[a-z][a-z0-9]*>/gi, '');
+   const cleanString = line.replace(/\n/, '').replace(/<\/?[a-z][a-z0-9]*>/gi, '');
 
    return cleanString;
 }
