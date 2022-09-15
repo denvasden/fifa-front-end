@@ -119,7 +119,6 @@ function parserCore(coreText) {
 
    while (indexEnd !== coreText.length - 1) {
 
-
       indexEnd = coreText.indexOf("\r\n", indexStart) < 0 ? coreText.length - 1 : coreText.indexOf("\r\n", indexStart);
 
       const lastContries = dataFIFA.countries[dataFIFA.countries.length - 1];
