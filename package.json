@@ -29,7 +29,10 @@
     "ignorePatterns": [
       "/build",
       "/node_modules"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": "error"
+    }
   },
   "browserslist": {
     "production": [
