@@ -10,7 +10,9 @@ function benchmark(numberIterations = 10, func, ...funcArgs) {
 
 function sanitize(string) {
   // Remove tags, unnecessary substrings, line break characters from the passed string
-  return string.replace(/<\/?\w*>|\r?\n|(Please note|[(,&*]).*/g, "");
+  return string
+    .replace(/<\/?\w*>|\r?\n/g, "")
+    .replace(/Please note.*|[(,&*].*/g, "");
 }
 
 function getSanitizeString(string, tag, unincludesTag = "<b>") {

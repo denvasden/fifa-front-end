@@ -603,11 +603,6 @@
   { "country": "ITALY", "league": "SERIE A TIM", "team": "Torino" },
   { "country": "ITALY", "league": "SERIE A TIM", "team": "Udinese" },
   { "country": "ITALY", "league": "SERIE A TIM", "team": "Venezia" },
-  {
-    "country": "ITALY",
-    "league": "SERIE A TIM",
-    "team": "    </ea-text><ea-elements-loader elements=\"ea-text\"></ea-elements-loader><ea-text    unresolved    slot=\"text\"            text-color=\"light\"    >    "
-  },
   { "country": "JAPAN", "league": "MEIJI YASUDA J1", "team": "Avispa Fukuoka" },
   { "country": "JAPAN", "league": "MEIJI YASUDA J1", "team": "Cerezo Osaka" },
   { "country": "JAPAN", "league": "MEIJI YASUDA J1", "team": "F.C. Tokyo" },
