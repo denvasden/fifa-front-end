@@ -9,10 +9,18 @@ function benchmark(numberIterations = 10, func, ...funcArgs) {
 }
 
 function sanitize(string) {
-  // Remove tags, unnecessary substrings, line break characters from the passed string
-  return string
-    .replace(/<\/?\w*>|\r?\n/g, "")
-    .replace(/Please note.*|[(,&*].*/g, "");
+  const controlCharacters = "\\r?\\n";
+  const htmlMarkup = "<\\/?\\w*>";
+  const specialCharacters = "[(,&*].*";
+  const specialStrings = "Please note.*";
+
+  return string.replace(
+    new RegExp(
+      `${controlCharacters}|${htmlMarkup}|${specialCharacters}|${specialStrings}`,
+      "gi"
+    ),
+    ""
+  );
 }
 
 function getSanitizeString(string, tag, unincludesTag = "<b>") {
