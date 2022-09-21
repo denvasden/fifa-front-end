@@ -1,4 +1,4 @@
-const { getSanitizeString } = require("./utilities");
+const { getSanitizedString } = require("./utilities");
 
 const { COUNTRIES_WITHOUT_LEAGUES } = require("./constants");
 
@@ -31,9 +31,9 @@ function parseCore(coreText) {
     const lastCountries = dataFIFA.countries[dataFIFA.countries.length - 1];
     const lastLegaues = dataFIFA.leagues[dataFIFA.leagues.length - 1];
     console.log(abstraction[0]);
-    const country = getSanitizeString(abstraction[0], "h2");
-    const league = getSanitizeString(abstraction[0], "b");
-    const team = getSanitizeString(abstraction[0], "p");
+    const country = getSanitizedString(abstraction[0], "h2");
+    const league = getSanitizedString(abstraction[0], "b");
+    const team = getSanitizedString(abstraction[0], "p");
 
     country && dataFIFA.countries.push(country);
     league && dataFIFA.leagues.push({ country: lastCountries, league: league });

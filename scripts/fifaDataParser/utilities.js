@@ -23,7 +23,7 @@ function sanitize(string) {
   );
 }
 
-function getSanitizeString(string, tag, unincludesTag = "<b>") {
+function getSanitizedString(string, tag, unincludesTag = "<b>") {
   // Unique case, works only with non-standard command markup
   const uniqueMarkupTeam = string.match(/(.*<\/p>)|<p>.*<br>/);
   if (uniqueMarkupTeam && tag === "p") return sanitize(uniqueMarkupTeam[0]);
@@ -81,7 +81,7 @@ function fixMarkupUniqueCommand(string) {
 }
 
 module.exports = {
-  getSanitizeString,
+  getSanitizedString,
   benchmark,
   parseCountry,
   parseLeague,
