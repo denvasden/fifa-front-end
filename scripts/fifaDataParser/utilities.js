@@ -50,11 +50,13 @@ function parseCountry(string) {
     return sanitize(string);
   }
 }
+
 function parseLeague(string) {
   if (string.includes("</b>")) {
     return sanitize(string);
   }
 }
+
 function parseTeam(string) {
   if (string.includes("</p>") && !string.includes("</b>")) {
     return sanitize(string);

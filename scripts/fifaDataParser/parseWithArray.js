@@ -5,7 +5,7 @@ const {
   fixMarkupUniqueCommand,
 } = require("./utilities");
 
-const { COUNTRIES_WITHOUT_LEAGUE } = require("./constants");
+const { COUNTRIES_WITHOUT_LEAGUES } = require("./constants");
 
 function parseText(
   textData,
@@ -56,7 +56,7 @@ function parseBlock(textBlock, dataFIFA) {
         team: team,
       });
 
-    if (COUNTRIES_WITHOUT_LEAGUE.includes(country))
+    if (COUNTRIES_WITHOUT_LEAGUES.includes(country))
       dataFIFA.leagues.push({ country: country, league: country });
   });
 }
