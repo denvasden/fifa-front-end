@@ -1,13 +1,11 @@
 const axios = require("axios").default;
-const path = require("path");
 
 const { parseText } = require("./fifaDataParser/parseWithArray");
 const { writeDataToJSONFiles } = require("./fifaDataParser/utilities");
+const { FIFA_DATA_PATH } = require("./paths");
 
 const URL =
   "https://www.ea.com/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list";
-
-const pathToData = path.dirname(__dirname, "index.js") + "/data";
 
 async function getParsedData(URL) {
   const response = await axios(URL);
@@ -18,5 +16,5 @@ async function getParsedData(URL) {
 (async function () {
   const dataFIFA = await getParsedData(URL);
 
-  writeDataToJSONFiles(pathToData, dataFIFA);
+  writeDataToJSONFiles(FIFA_DATA_PATH, dataFIFA);
 })();
