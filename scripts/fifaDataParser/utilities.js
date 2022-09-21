@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs/promises");
 
 function benchmark(numberIterations = 10, func, ...funcArgs) {
   const now = Date.now();
@@ -37,20 +37,25 @@ function getSanitizeString(string, tag, unincludesTag = "<b>") {
   return abstraction ? sanitize(abstraction[0]) : null;
 }
 
-function writeDataToJSONFiles(path, dataObject) {
-  Object.keys(dataObject).forEach((key) =>
-    writeToJSONFile(path, `${key}.json`, dataObject[key])
+async function writeData(path, data) {
+  try {
+    await fs.rm(path, { recursive: true });
+    await fs.mkdir(path);
+  } catch (error) {
+    console.error(error);
+  }
+
+  Object.entries(data).forEach(([fileName, data]) =>
+    writeFile(`${path}/${fileName}.json`, JSON.stringify(data))
   );
 }
 
-function writeToJSONFile(path, fileName, data) {
-  fs.mkdir(path, (error) => {
-    if (!error || error.code === "EEXIST") {
-      fs.writeFile(`${path}/${fileName}`, JSON.stringify(data), (error) =>
-        error ? console.log(`Ошибка при создании файла: ${fileName}`) : null
-      );
-    } else console.log("Ошибка при создании каталога: /data");
-  });
+async function writeFile(path, data) {
+  try {
+    await fs.writeFile(path, data);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function parseCountry(string) {
@@ -76,11 +81,11 @@ function fixMarkupUniqueCommand(string) {
 }
 
 module.exports = {
-  writeDataToJSONFiles,
   getSanitizeString,
   benchmark,
   parseCountry,
   parseLeague,
   parseTeam,
   fixMarkupUniqueCommand,
+  writeData,
 };

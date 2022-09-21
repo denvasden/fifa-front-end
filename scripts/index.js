@@ -1,7 +1,7 @@
 const axios = require("axios").default;
 
 const { parseText } = require("./fifaDataParser/parseWithArray");
-const { writeDataToJSONFiles } = require("./fifaDataParser/utilities");
+const { writeData } = require("./fifaDataParser/utilities");
 const { FIFA_DATA_PATH } = require("./paths");
 
 const URL =
@@ -14,7 +14,7 @@ async function getParsedData(URL) {
 }
 
 (async function () {
-  const dataFIFA = await getParsedData(URL);
+  const fifaData = await getParsedData(URL);
 
-  writeDataToJSONFiles(FIFA_DATA_PATH, dataFIFA);
+  await writeData(FIFA_DATA_PATH, fifaData);
 })();
