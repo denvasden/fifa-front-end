@@ -1,10 +1,11 @@
 const axios = require("axios").default;
 const path = require("path");
+
 const { parseText } = require("./fifaDataParser/parseWithArray");
 const { writeDataToJSONFiles } = require("./fifaDataParser/utilities");
 
 const URL =
-  "https://www.ea.com/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list?setLocale=en-us";
+  "https://www.ea.com/games/fifa/fifa-22/news/fifa-22-all-leagues-clubs-teams-list";
 
 const pathToData = path.dirname(__dirname, "index.js") + "/data";
 
