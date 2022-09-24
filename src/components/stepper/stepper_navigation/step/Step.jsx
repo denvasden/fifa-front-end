@@ -9,12 +9,10 @@ const Step = ({ title, description, stepIndex, active }) => {
       <div className="step__number"> {stepIndex}</div>
       <div className={"step__title-description"}>
         <p>
-          {" "}
           {StepNum} {title}
         </p>
         {description && (
           <p>
-            {" "}
             {StepNum} {description}
           </p>
         )}
