@@ -1,5 +1,7 @@
 const fs = require("fs/promises");
 
+const { COUNTRY_MARKUP, LEAGUE_MARKUP, TEAM_MARKUP } = require("./constants");
+
 function benchmark(numberIterations = 10, func, ...funcArgs) {
   const now = Date.now();
 
@@ -8,7 +10,7 @@ function benchmark(numberIterations = 10, func, ...funcArgs) {
   return Date.now() - now;
 }
 
-function sanitize(string) {
+function sanitize(string = "") {
   const controlCharacters = "\\r?\\n";
   const htmlMarkup = "<\\/?\\w*>";
   const specialCharacters = "[(,&*].*";
@@ -58,22 +60,37 @@ async function writeFile(path, data) {
   }
 }
 
-function parseCountry(string) {
-  if (string.includes("</h2>")) {
-    return sanitize(string);
+function parseCountry(string = "") {
+  const regExp = new RegExp(COUNTRY_MARKUP, "gi");
+  const match = regExp.exec(string);
+
+  if (!match) {
+    return null;
   }
+
+  return sanitize(match[0]);
 }
 
-function parseLeague(string) {
-  if (string.includes("</b>")) {
-    return sanitize(string);
+function parseLeague(string = "") {
+  const regExp = new RegExp(LEAGUE_MARKUP, "gi");
+  const match = regExp.exec(string);
+
+  if (!match) {
+    return null;
   }
+
+  return sanitize(match[0]);
 }
 
-function parseTeam(string) {
-  if (string.includes("</p>") && !string.includes("</b>")) {
-    return sanitize(string);
+function parseTeam(string = "") {
+  const regExp = new RegExp(TEAM_MARKUP, "gi");
+  const match = regExp.exec(string);
+
+  if (!match) {
+    return null;
   }
+
+  return sanitize(match[0]);
 }
 
 function fixMarkupUniqueCommand(string) {
