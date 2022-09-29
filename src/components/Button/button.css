@@ -1,5 +1,5 @@
-.basic-button,
-.basic-button__disabled {
+.button,
+.button__disabled {
   padding: 10px 15px;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.37);
@@ -7,10 +7,10 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.312);
 }
 
-.basic-button {
+.button {
   cursor: pointer;
 }
 
-.basic-button:active {
+.button:active {
   background-color: rgba(0, 0, 0, 0.137);
 }

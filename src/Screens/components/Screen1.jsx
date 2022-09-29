@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayGround = () => {
+const Screen1 = () => {
   return (
     <div>
       <p>
@@ -11,4 +11,4 @@ const PlayGround = () => {
   );
 };
 
-export default PlayGround;
+export default Screen1;

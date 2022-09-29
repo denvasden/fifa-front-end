@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayGround = () => {
+const Screen4 = () => {
   return (
     <div>
       <p>Step4</p>
@@ -8,4 +8,4 @@ const PlayGround = () => {
   );
 };
 
-export default PlayGround;
+export default Screen4;
