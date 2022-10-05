@@ -28,7 +28,7 @@ const Stepper = ({ initialData }) => {
   );
 };
 
-Stepper.propTypes = {
+Stepper.propTypes = PropTypes.exact({
   initialData: PropTypes.arrayOf(
     PropTypes.exact({
       title: PropTypes.string.isRequired,
@@ -37,6 +37,6 @@ Stepper.propTypes = {
       description: PropTypes.string,
     })
   ).isRequired,
-};
+});
 
 export default Stepper;

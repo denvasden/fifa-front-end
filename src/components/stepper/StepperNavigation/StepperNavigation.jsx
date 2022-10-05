@@ -1,4 +1,3 @@
-
 import "./stepper-navigation.css";
 import Step from "./components/step/Step";
 import PropTypes from "prop-types";
@@ -19,9 +18,9 @@ const StepperNavigation = ({ initialData, activeIndex }) => {
   );
 };
 
-StepperNavigation.propTypes = {
+StepperNavigation.propTypes = PropTypes.exact({
   initialData: PropTypes.array.isRequired,
   activeIndex: PropTypes.number.isRequired,
-};
+});
 
 export default StepperNavigation;

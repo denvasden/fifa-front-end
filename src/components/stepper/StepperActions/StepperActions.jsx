@@ -23,12 +23,12 @@ const StepperActions = (props) => {
   );
 };
 
-StepperActions.propTypes = {
+StepperActions.propTypes = PropTypes.exact({
   nextStep: PropTypes.func,
   prevStep: PropTypes.func,
   validate: PropTypes.func,
   finish: bool,
   prevDisabled: bool,
-};
+});
 
 export default StepperActions;

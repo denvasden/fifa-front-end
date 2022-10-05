@@ -15,11 +15,11 @@ const Step = ({ title, description, number, active }) => {
   );
 };
 
-Step.propTypes = {
+Step.propTypes = PropTypes.exact({
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   number: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
-};
+});
 
 export default Step;
