@@ -6,7 +6,7 @@ const initialData = [
   {
     title: "Step1",
     content: <Screen1 />,
-    validation: function () {
+    validate: function () {
       return true;
     },
     description: "(description)",
@@ -14,21 +14,21 @@ const initialData = [
   {
     title: "Step2",
     content: <Screen2 />,
-    validation: function () {
+    validate: function () {
       return true;
     },
   },
   {
     title: "Step3",
     content: <Screen3 />,
-    validation: function () {
+    validate: function () {
       return true;
     },
   },
   {
     title: "Step3",
     content: <Screen4 />,
-    validation: function () {
+    validate: function () {
       return true;
     },
   },

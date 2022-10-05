@@ -21,7 +21,7 @@ const Stepper = ({ initialData }) => {
         prevStep={prevStep}
         prevDisabled={activeIndex === 0}
         finish={activeIndex === amountSteps - 1}
-        validation={initialData[activeIndex].validation}
+        validate={initialData[activeIndex].validate}
       />
     </div>
     //  </StepperProvider>
@@ -33,7 +33,7 @@ Stepper.propTypes = {
     PropTypes.exact({
       title: PropTypes.string.isRequired,
       content: PropTypes.element.isRequired,
-      validation: PropTypes.func,
+      validate: PropTypes.func,
       description: PropTypes.string,
     })
   ).isRequired,

@@ -4,10 +4,10 @@ import PropTypes, { bool } from "prop-types";
 import "./stepper-actions.css";
 
 const StepperActions = (props) => {
-  const { nextStep, prevStep, validation, finish, prevDisabled } = props;
+  const { nextStep, prevStep, validate, finish, prevDisabled } = props;
 
   function handleNext() {
-    validation() ? nextStep() : alert("No valid data!!!");
+    validate() ? nextStep() : alert("No valid data!!!");
   }
   return (
     <div className="stepper-actions">
@@ -26,7 +26,7 @@ const StepperActions = (props) => {
 StepperActions.propTypes = {
   nextStep: PropTypes.func,
   prevStep: PropTypes.func,
-  validation: PropTypes.func,
+  validate: PropTypes.func,
   finish: bool,
   prevDisabled: bool,
 };
