@@ -1,9 +1,10 @@
 import React from "react";
 
 const Screen1 = () => {
+  
   return (
-    <div>
-      <p>
+    <div  >      
+      <p >
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum fugiat
         delectus porro cupiditate quas aut dolor
       </p>

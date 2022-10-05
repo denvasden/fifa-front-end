@@ -13,7 +13,7 @@ const Stepper = ({ initialData }) => {
 
   return (
     //   <StepperProvider>
-    <div className="stepper">
+    <div className="stepper" >
       <StepperNavigation initialData={initialData} activeIndex={activeIndex} />
       <StepperContent>{initialData[activeIndex].content}</StepperContent>
       <StepperActions
@@ -29,8 +29,8 @@ const Stepper = ({ initialData }) => {
 };
 
 Stepper.propTypes = {
-  initialData: PropTypes.array(
-    PropTypes.shape({
+  initialData: PropTypes.arrayOf(
+    PropTypes.exact({
       title: PropTypes.string.isRequired,
       content: PropTypes.element.isRequired,
       validation: PropTypes.func,
