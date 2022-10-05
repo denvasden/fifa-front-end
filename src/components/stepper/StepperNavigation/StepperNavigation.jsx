@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./stepper-navigation.css";
 import Step from "./components/step/Step";
 import PropTypes from "prop-types";
