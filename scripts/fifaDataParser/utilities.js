@@ -1,10 +1,14 @@
 const fs = require("fs/promises");
+const fsSync = require("fs");
 
 const { COUNTRY_MARKUP, LEAGUE_MARKUP, TEAM_MARKUP } = require("./constants");
 
 async function writeData(path, data) {
   try {
-    await fs.rm(path, { recursive: true });
+    if (fsSync.existsSync(path)) {
+      await fs.rm(path, { recursive: true });
+    }
+
     await fs.mkdir(path);
   } catch (error) {
     console.error(error);
@@ -24,8 +28,8 @@ async function writeFile(path, data) {
 }
 
 function sanitize(string = "") {
-  const controlCharacters = "\\r?\\n";
-  const htmlMarkup = "<\\/?\\w*>";
+  const controlCharacters = "\r?\n";
+  const htmlMarkup = "<[^>]*>";
   const specialCharacters = "[(,&*].*";
   const specialStrings = "Please note.*";
 

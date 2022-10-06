@@ -3,6 +3,7 @@ const {
   COUNTRIES_WITHOUT_LEAGUES,
   COUNTRY_MARKUP,
   LEAGUE_MARKUP,
+  NOT_COUNTRIES,
   TEAM_MARKUP,
 } = require("./constants");
 
@@ -30,12 +31,19 @@ function parseDataString(dataString = "") {
     const lastFoundCountry = result.countries[result.countries.length - 1];
     const lastFoundLeague = result.leagues[result.leagues.length - 1];
 
-    country && result.countries.push(country);
+    if (country && !NOT_COUNTRIES.includes(country)) {
+      result.countries.push(country);
+    }
+
     league && result.leagues.push({ country: lastFoundCountry, league });
     team && result.teams.push({ ...lastFoundLeague, team });
 
     if (COUNTRIES_WITHOUT_LEAGUES.includes(country)) {
       result.leagues.push({ country, league: country });
+    }
+
+    if (NOT_COUNTRIES.includes(country)) {
+      result.leagues.push({ country: lastFoundCountry, league: country });
     }
   }
 
