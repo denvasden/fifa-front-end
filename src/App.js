@@ -2,7 +2,7 @@ import "./App.css";
 import Stepper from "./components/Stepper/Stepper";
 import { Screen1, Screen2, Screen3, Screen4 } from "./Screens/index";
 
-const initialData = [
+const steps = [
   {
     title: "Step1",
     content: <Screen1 />,
@@ -26,7 +26,7 @@ const initialData = [
     },
   },
   {
-    title: "Step3",
+    title: "Step4",
     content: <Screen4 />,
     validate: function () {
       return true;
@@ -37,7 +37,7 @@ const initialData = [
 function App() {
   return (
     <div className="App">
-      <Stepper initialData={initialData} />
+      <Stepper steps={steps} />
     </div>
   );
 }

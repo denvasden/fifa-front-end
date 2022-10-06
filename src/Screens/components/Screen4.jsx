@@ -1,5 +1,3 @@
-
-
 const Screen4 = () => {
   return (
     <div>

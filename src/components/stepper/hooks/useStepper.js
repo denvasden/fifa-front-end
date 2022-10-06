@@ -1,20 +1,29 @@
 import { useState } from "react";
 
-function useStepper(amountSteps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+function useStepper(steps) {
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const nextStepIndex =
+    activeStepIndex + 1 === steps.length ? null : activeStepIndex + 1;
 
   function nextStep() {
-    if (activeIndex + 1 < amountSteps)
-      setActiveIndex((prevIndex) => prevIndex + 1);
+    if (steps[activeStepIndex].validate && !steps[activeStepIndex].validate()) {
+      alert("No valid data!!!");
+      return;
+    }
+    if (steps[activeStepIndex + 1])
+      setActiveStepIndex((prevIndex) => prevIndex + 1);
   }
+
   function prevStep() {
-    if (activeIndex - 1 >= 0) setActiveIndex((prevIndex) => prevIndex - 1);
+    if (steps[activeStepIndex - 1])
+      setActiveStepIndex((prevIndex) => prevIndex - 1);
   }
 
   return {
-    activeIndex,
+    activeStepIndex,
     prevStep,
     nextStep,
+    nextStepIndex,
   };
 }
 

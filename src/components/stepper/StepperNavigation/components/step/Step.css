@@ -7,8 +7,6 @@
   align-items: center;
   margin: 0 20px;
   color: var(--step-text-color);
-
-  /* justify-content: space-between; */
 }
 
 .step__number {
@@ -22,15 +20,15 @@
   margin: 0 10px;
 }
 
-.step__title-description {
+.step__title__description {
   display: block;
   text-align: start;
 }
 
-.step__title-description p {
+.step__title__description p {
   margin: 0;
 }
 
-.step__active {
+.step_active {
   --step-text-color: rgb(28, 13, 226);
 }

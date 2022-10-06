@@ -1,13 +1,13 @@
-
 import PropTypes from "prop-types";
+import clsx from "clsx";
 import "./Step.css";
 
 const Step = ({ title, description, number, active }) => {
-  const stylesToStep = active ? "step step__active" : "step";
+  const stepStyle = clsx("step", active && "step_active");
   return (
-    <div className={stylesToStep}>
+    <div className={stepStyle}>
       <div className="step__number"> {number}</div>
-      <div className={"step__title-description"}>
+      <div className={"step__title__description"}>
         <p>{title}</p>
         <p>{description}</p>
       </div>
@@ -15,11 +15,11 @@ const Step = ({ title, description, number, active }) => {
   );
 };
 
-Step.propTypes = PropTypes.exact({
+Step.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   number: PropTypes.number.isRequired,
   active: PropTypes.bool.isRequired,
-});
+};
 
 export default Step;

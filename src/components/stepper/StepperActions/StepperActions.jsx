@@ -1,34 +1,24 @@
-
 import Button from "../../Button/Button";
-import PropTypes, { bool } from "prop-types";
+import PropTypes from "prop-types";
 import "./stepper-actions.css";
 
 const StepperActions = (props) => {
-  const { nextStep, prevStep, validate, finish, prevDisabled } = props;
-
-  function handleNext() {
-    validate() ? nextStep() : alert("No valid data!!!");
-  }
+  const { onNext, onPreviouse, finishStep, prevDisabled } = props;
   return (
     <div className="stepper-actions">
-      <Button disabled={prevDisabled} onClick={prevStep}>
+      <Button disabled={prevDisabled} onClick={onPreviouse}>
         prev
       </Button>
-      {finish ? (
-        <Button>finish</Button>
-      ) : (
-        <Button onClick={handleNext}>next</Button>
-      )}
+      <Button onClick={onNext}>{finishStep ? "finish" : "next"}</Button>
     </div>
   );
 };
 
-StepperActions.propTypes = PropTypes.exact({
-  nextStep: PropTypes.func,
-  prevStep: PropTypes.func,
-  validate: PropTypes.func,
-  finish: bool,
-  prevDisabled: bool,
-});
+StepperActions.propTypes = {
+  onNext: PropTypes.func,
+  onPreviouse: PropTypes.func,
+  prevDisabled: PropTypes.bool,
+  finish: PropTypes.bool,
+};
 
 export default StepperActions;

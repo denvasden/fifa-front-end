@@ -2,25 +2,31 @@ import "./stepper-navigation.css";
 import Step from "./components/step/Step";
 import PropTypes from "prop-types";
 
-const StepperNavigation = ({ initialData, activeIndex }) => {
+const StepperNavigation = ({ steps, activeStepIndex }) => {
   return (
-    <div className="stepper-navigation">
-      {initialData.map((step, index) => (
-        <Step
-          title={step.title}
-          key={index}
-          number={index + 1}
-          active={activeIndex === index}
-          description={step.description}
-        />
+    <ul className="stepper-navigation">
+      {steps.map((step, index) => (
+        <li key={index}>
+          <Step
+            title={step.title}
+            number={index + 1}
+            active={activeStepIndex === index}
+            description={step.description}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
-StepperNavigation.propTypes = PropTypes.exact({
-  initialData: PropTypes.array.isRequired,
-  activeIndex: PropTypes.number.isRequired,
-});
+StepperNavigation.propTypes = {
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    })
+  ).isRequired,
+  activeStepIndex: PropTypes.number.isRequired,
+};
 
 export default StepperNavigation;

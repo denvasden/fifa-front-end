@@ -1,16 +1,8 @@
-
 import PropTypes from "prop-types";
 import "./stepper-content.css";
 
 const StepperContent = ({ children }) => {
-  return (
-    <div
-      className="stepper-content"
-     
-    >
-      {children}
-    </div>
-  );
+  return <div className="stepper-content">{children}</div>;
 };
 
 StepperContent.propTypes = {
