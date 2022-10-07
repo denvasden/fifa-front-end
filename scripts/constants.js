@@ -1,9 +1,0 @@
-const COUNTRIES_WITHOUT_LEAGUE = [
-  "WOMEN'S NATIONAL",
-  "REST OF WORLD",
-  "MEN'S NATIONAL",
-];
-
-module.exports = {
-  COUNTRIES_WITHOUT_LEAGUE,
-};
