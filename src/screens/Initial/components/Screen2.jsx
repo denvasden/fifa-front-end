@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useStepperContext from "../../components/Stepper/hooks/useStepperContext/useStepperContext";
+import { useStepperContext } from "../../../components/Stepper/hooks/";
 
 const Screen2 = () => {
   const { receiveActiveStepData, initialActiveStepData } = useStepperContext();

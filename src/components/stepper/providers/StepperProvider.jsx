@@ -1,5 +1,5 @@
 import React from "react";
-import useStepper from "../hooks/useStepper/useStepper";
+import { useStepper } from "../hooks/";
 
 export const StepperContext = React.createContext();
 

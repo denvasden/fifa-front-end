@@ -1,48 +1,23 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Stepper from "./components/Stepper";
+// import { StepperProvider } from "./components/Stepper/providers/StepperProvider";
+// import { Screen1, Screen2, Screen3, Screen4 } from "./screens/index";
+import { Initial } from "./screens/Initial";
 import "./App.css";
-import Stepper from "./components/Stepper";
-// import useStepper from "./components/Stepper/hooks/useStepper/useStepper";
-import { StepperProvider } from "./components/Stepper/providers/StepperProvider";
-import { Screen1, Screen2, Screen3, Screen4 } from "./Screens/index";
-
-function validate(text) {
-  return text.length >= 5;
-}
-
-const steps = [
-  {
-    title: "Step1",
-    content: <Screen1 />,
-    validate: validate,
-    description: "(description)",
-  },
-  {
-    title: "Step2",
-    content: <Screen2 />,
-    validate: validate,
-  },
-  {
-    title: "Step3",
-    content: <Screen3 />,
-    validate: function () {
-      return true;
-    },
-  },
-  {
-    title: "Step4",
-    content: <Screen4 />,
-    validate: function () {
-      return true;
-    },
-  },
-];
 
 function App() {
   return (
-    <StepperProvider steps={steps}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Initial />}></Route>
+      </Routes>
+
+      {/* <StepperProvider steps={steps}>
       <div className="App">
-        <Stepper steps={steps} />
-      </div>
-    </StepperProvider>
+        <Stepper steps={steps} /> */}
+      {/* </div> */}
+      {/* </StepperProvider> */}
+    </BrowserRouter>
   );
 }
 

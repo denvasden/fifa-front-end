@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import StepperNavigation from "./components/StepperNavigation";
 import StepperContent from "./components/StepperСontent/StepperContent";
 import StepperActions from "./components/StepperActions/StepperActions";
-import useStepperContext from "./hooks/useStepperContext/useStepperContext";
+import { useStepperContext } from "./hooks/";
 import "./stepper.css";
 
 const Stepper = ({ steps }) => {
