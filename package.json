@@ -18,7 +18,8 @@
     "eject": "react-scripts eject",
     "eslint": "eslint .",
     "prepare": "husky install",
-    "prettier": "prettier --check .",
+    "prettier-check": "prettier --check .",
+    "prettier-write": "prettier --write .",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },

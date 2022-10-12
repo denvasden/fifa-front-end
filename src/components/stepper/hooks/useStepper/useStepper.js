@@ -6,9 +6,7 @@ const ACTION_TYPES = {
   ADD_ACTIVE_STEP_DATA: "ADD_ACTIVE_STEP_DATA",
 };
 
-
 function useStepper(steps) {
-
   const [state, dispath] = useReducer(stepperReducer, {
     activeStepIndex: 0,
     screensData: [],
@@ -34,15 +32,12 @@ function useStepper(steps) {
   }
 
   function prevStep() {
-
     addScreenData(activeStepData);
     dispath({ type: ACTION_TYPES.ACTIVE_STEP_INDEX_DECREMENT });
   }
 
-
   function receiveActiveStepData(data) {
     activeStepData = data;
-
   }
 
   return {
@@ -55,24 +50,23 @@ function useStepper(steps) {
       ? screensData[activeStepIndex]
       : "",
     prevDisabled: activeStepIndex === 0,
-    finishStep: activeStepIndex === steps.length - 1
+    finishStep: activeStepIndex === steps.length - 1,
   };
 }
 
 export default useStepper;
 
-
 function stepperReducer(state, action) {
   switch (action.type) {
     case ACTION_TYPES.ACTIVE_STEP_INDEX_INCREMENT: {
-      if (action.payload[state.activeStepIndex + 1]) state.activeStepIndex++
+      if (action.payload[state.activeStepIndex + 1]) state.activeStepIndex++;
       return {
-        ...state
+        ...state,
       };
     }
 
     case ACTION_TYPES.ACTIVE_STEP_INDEX_DECREMENT: {
-      if (state.activeStepIndex > 0) state.activeStepIndex--
+      if (state.activeStepIndex > 0) state.activeStepIndex--;
       return {
         ...state,
       };
@@ -81,12 +75,11 @@ function stepperReducer(state, action) {
     case ACTION_TYPES.ADD_ACTIVE_STEP_DATA: {
       state.screensData[state.activeStepIndex] = action.payload;
       return {
-        ...state
-      }
+        ...state,
+      };
     }
 
     default:
       return state;
   }
 }
-

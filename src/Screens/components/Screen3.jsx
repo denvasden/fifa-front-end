@@ -2,7 +2,7 @@ import { useState } from "react";
 import useStepperContext from "../../components/Stepper/hooks/useStepperContext/useStepperContext";
 
 const Screen3 = () => {
-const { receiveActiveStepData, initialActiveStepData }= useStepperContext()
+  const { receiveActiveStepData, initialActiveStepData } = useStepperContext();
   const [state, setState] = useState(initialActiveStepData);
 
   receiveActiveStepData(state);
