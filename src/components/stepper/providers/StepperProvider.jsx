@@ -1,13 +1,10 @@
 import React from "react";
-import useStepper from "../hooks/useStepper";
+import useStepper from "../hooks/useStepper/useStepper";
 
 export const StepperContext = React.createContext();
 
-export function StepperProvider({ children }) {
-  const stepperState = useStepper();
+export function StepperProvider({ steps, children, }) {  
   return (
-    <StepperContext.Provider value={stepperState}>
-      {children}
-    </StepperContext.Provider>
+    <StepperContext.Provider value={useStepper(steps)}>{children}</StepperContext.Provider>
   );
 }

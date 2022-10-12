@@ -1,6 +1,9 @@
 import "./App.css";
-import Stepper from "./components/stepper/Stepper";
-import { Screen1, Screen2, Screen3, Screen4 } from "./Screens/index";
+import Stepper from "./components/Stepper";
+// import useStepper from "./components/Stepper/hooks/useStepper/useStepper";
+import { StepperProvider } from "./components/Stepper/providers/StepperProvider";
+import { Screen1 , Screen2, Screen3, Screen4 } 
+  from "./Screens/index";
 
 function validate(text) {
   return text.length >= 5;
@@ -9,25 +12,25 @@ function validate(text) {
 const steps = [
   {
     title: "Step1",
-    content: Screen1,
+    content: <Screen1/>,
     validate: validate,
     description: "(description)",
   },
   {
     title: "Step2",
-    content: Screen2,
+    content: <Screen2/>,
     validate: validate,
   },
   {
     title: "Step3",
-    content: Screen3,
+    content:< Screen3/>,
     validate: function () {
       return true;
     },
   },
   {
     title: "Step4",
-    content: Screen4,
+    content: <Screen4/>,
     validate: function () {
       return true;
     },
@@ -35,10 +38,15 @@ const steps = [
 ];
 
 function App() {
+
+
   return (
-    <div className="App">
-      <Stepper steps={steps} />
-    </div>
+    <StepperProvider steps={steps}>
+      <div className="App">
+        <Stepper steps={steps} />
+      </div>
+    </StepperProvider>
+
   );
 }
 

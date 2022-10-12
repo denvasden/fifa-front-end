@@ -1,8 +1,11 @@
 import { useState } from "react";
-const Screen3 = ({ getScreenData, initialState }) => {
-  const [state, setState] = useState(initialState);
+import useStepperContext from "../../components/Stepper/hooks/useStepperContext/useStepperContext";
 
-  getScreenData(state);
+const Screen3 = () => {
+const { receiveActiveStepData, initialActiveStepData }= useStepperContext()
+  const [state, setState] = useState(initialActiveStepData);
+
+  receiveActiveStepData(state);
 
   function handleChange(event) {
     setState(event.target.value);
