@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import StepperNavigation from "./components/StepperNavigation";
 import StepperContent from "./components/StepperСontent/StepperContent";
 import StepperActions from "./components/StepperActions/StepperActions";
-import { useStepperContext } from "./hooks/";
+import { StepperProvider } from "./providers/StepperProvider";
+import { useStepper } from "./hooks/";
 import "./stepper.css";
 
 const Stepper = ({ steps }) => {
@@ -13,18 +14,25 @@ const Stepper = ({ steps }) => {
     content,
     prevDisabled,
     finishStep,
-  } = useStepperContext();
+    updateTempStepData,
+    activeStepData,
+  } = useStepper(steps);
   return (
-    <div className="stepper">
-      <StepperNavigation steps={steps} activeStepIndex={activeStepIndex} />
-      <StepperContent>{content}</StepperContent>
-      <StepperActions
-        onNext={nextStep}
-        onPreviouse={prevStep}
-        isFinishStep={finishStep}
-        prevDisabled={prevDisabled}
-      />
-    </div>
+    <StepperProvider
+      updateTempStepData={updateTempStepData}
+      activeStepData={activeStepData}
+    >
+      <div className="stepper">
+        <StepperNavigation steps={steps} activeStepIndex={activeStepIndex} />
+        <StepperContent>{content}</StepperContent>
+        <StepperActions
+          onNext={nextStep}
+          onPreviouse={prevStep}
+          isFinishStep={finishStep}
+          prevDisabled={prevDisabled}
+        />
+      </div>
+    </StepperProvider>
   );
 };
 

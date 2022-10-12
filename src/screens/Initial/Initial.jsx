@@ -1,5 +1,5 @@
 import React from "react";
-import { StepperProvider } from "../../components/Stepper/providers/StepperProvider";
+// import { StepperProvider } from "../../components/Stepper/providers/StepperProvider";
 import Stepper from "../../components/Stepper/Stepper";
 import { Screen1, Screen2, Screen3, Screen4 } from "./components/";
 
@@ -37,11 +37,9 @@ const steps = [
 
 function Initial() {
   return (
-    <StepperProvider steps={steps}>
-      <div className="App">
-        <Stepper steps={steps} />
-      </div>
-    </StepperProvider>
+    <div className="App">
+      <Stepper steps={steps} />
+    </div>
   );
 }
 

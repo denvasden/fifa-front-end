@@ -36,7 +36,7 @@ function useStepper(steps) {
     dispath({ type: ACTION_TYPES.ACTIVE_STEP_INDEX_DECREMENT });
   }
 
-  function receiveActiveStepData(data) {
+  function updateTempStepData(data) {
     activeStepData = data;
   }
 
@@ -44,9 +44,9 @@ function useStepper(steps) {
     activeStepIndex,
     prevStep,
     nextStep,
-    receiveActiveStepData,
+    updateTempStepData,
     content: steps[activeStepIndex].content,
-    initialActiveStepData: screensData[activeStepIndex]
+    activeStepData: screensData[activeStepIndex]
       ? screensData[activeStepIndex]
       : "",
     prevDisabled: activeStepIndex === 0,

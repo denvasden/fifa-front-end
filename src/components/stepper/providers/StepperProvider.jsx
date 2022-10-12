@@ -1,12 +1,19 @@
 import React from "react";
-import { useStepper } from "../hooks/";
+import PropTypes from "prop-types";
+// import { useStepper } from "../hooks/";
 
 export const StepperContext = React.createContext();
 
-export function StepperProvider({ steps, children }) {
+export function StepperProvider(props) {
+  const { activeStepData, updateTempStepData, children } = props;
   return (
-    <StepperContext.Provider value={useStepper(steps)}>
+    <StepperContext.Provider value={{ activeStepData, updateTempStepData }}>
       {children}
     </StepperContext.Provider>
   );
 }
+
+StepperProvider.propTypes = {
+  activeStepData: PropTypes.any,
+  updateTempStepData: PropTypes.func,
+};
