@@ -1,11 +1,7 @@
 import React from "react";
-import Stepper from "../Stepper/Stepper";
-import {
-  AddPlayers,
-  Screen2,
-  Screen3,
-  Screen4,
-} from "../../screens/components";
+// import { StepperProvider } from "../../components/Stepper/providers/StepperProvider";
+import Stepper from "../../components/Stepper/Stepper";
+import { Screen1, Screen2, Screen3, Screen4 } from "./components/";
 
 function validate(text) {
   return text.length >= 5;
