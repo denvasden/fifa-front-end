@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useStepperContext } from "../../../../components/Stepper/hooks";
+import { useStepperContext } from "../../../components/Stepper/hooks";
 
-const Screen3 = () => {
+const Screen2 = () => {
   const { updateTempStepData, activeStepData } = useStepperContext();
   const [state, setState] = useState(activeStepData);
 
@@ -14,9 +14,9 @@ const Screen3 = () => {
   return (
     <div>
       <input value={state} type="text" onChange={handleChange} />
-      <p>Step3</p>
+      <p>Step2</p>
     </div>
   );
 };
 
-export default Screen3;
+export default Screen2;

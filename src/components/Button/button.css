@@ -1,8 +1,5 @@
-.button:disabled {
-  cursor: default;
-}
-
-.button {
+.button,
+.button_disabled {
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 10px;
@@ -17,4 +14,8 @@
 
 .button:active {
   background-color: rgba(0, 0, 0, 0.237);
+}
+
+.button_disabled {
+  cursor: default;
 }

@@ -1,4 +1,4 @@
-export { default as Screen1 } from "./Screen1/Screen1";
+export { default as AddPlayers } from "./AddPlayers/AddPlayers";
 
 export { default as Screen2 } from "./Screen2/Screen2";
 

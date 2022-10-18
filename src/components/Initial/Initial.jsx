@@ -1,6 +1,11 @@
 import React from "react";
-import Stepper from "../../components/Stepper/Stepper";
-import { Screen1, Screen2, Screen3, Screen4 } from "./components/";
+import Stepper from "../Stepper/Stepper";
+import {
+  AddPlayers,
+  Screen2,
+  Screen3,
+  Screen4,
+} from "../../screens/components";
 
 function validate(text) {
   return text.length >= 5;
@@ -9,7 +14,7 @@ function validate(text) {
 const steps = [
   {
     title: "Step1",
-    content: <Screen1 />,
+    content: <AddPlayers />,
     validate: validate,
     description: "(description)",
   },
